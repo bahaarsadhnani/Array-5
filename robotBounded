@@ -1,0 +1,28 @@
+class Solution {
+    
+    //1041. Robot Bounded In Circle
+    //Time complexity : O(n)
+    //Space complexity : O(1)
+    public boolean isRobotBounded(String instructions) {
+        
+        int x = 0;
+        int y = 0;     //N    W        S     E  
+        int[][] dirs = {{0,1},{-1,0},{0,-1},{1,0}};
+        int k = 0;
+        for(int i = 0; i < instructions.length(); i++){
+            char ch = instructions.charAt(i);
+            
+            if(ch == 'G'){
+                x += dirs[k][0];
+                y += dirs[k][1];
+            }
+            else if(ch =='L')
+                k = (k + 1) % 4;
+            
+            else if(ch == 'R')
+                k = (k + 3) % 4;
+     
+        }
+        return (x == 0 && y == 0) || (k != 0);
+    }
+}
